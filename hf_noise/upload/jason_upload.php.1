@@ -1,0 +1,95 @@
+<?php
+echo "got request to insert into db";
+$link = mysqli_connect("localhost", "root", "mysql123", "hf_noise");
+// Check connection
+//if($link === false){
+
+//    die("ERROR: Could not connect. " . mysqli_connect_error());
+//}
+
+//Make sure that it is a POST request.
+if(strcasecmp($_SERVER['REQUEST_METHOD'], 'POST') != 0){
+    throw new Exception('Request method must be POST!');
+}
+//Make sure that the content type of the POST request has been set to application/json
+$contentType = isset($_SERVER["CONTENT_TYPE"]) ? trim($_SERVER["CONTENT_TYPE"]) : '';
+if(strcasecmp($contentType, 'application/json') != 0){
+    throw new Exception('Content type must be: application/json');
+}
+//Receive the RAW post data.
+$content = trim(file_get_contents('php://input'));
+
+//Attempt to decode the incoming RAW post data from JSON.
+//$decoded = json_decode($content, true);
+//echo file_get_contents('php://input'); 
+//$decoded = array explode(",",$content);
+$decoded = parse_csv('php://input', array("to_object" => true,$link));
+echo " dump1 " . $decoded[0];
+echo " dump2 " . $decoded[1];
+//If json_decode failed, the JSON is invalid.
+//if(!is_array($decoded)){
+//    throw new Exception('Received content contained invalid JSON!');
+//}
+echo " operation ". $data["operacion"];
+echo " content " .file_get_contents('php://input');
+/* insert data into DB */
+//    foreach($obj as $item) {
+//$sql = "INSERT INTO `hf_noise`. `hf_noise_data` INSERT INTO `hf_noise_data`(`Date`, `Time`, `samples`,`1Mhz_data`, `2Mhz_data`, `3Mhz_data`, `4Mhz_data`, `5Mhz_data`, `6Mhz_data`, `7Mhz_data`, `8Mhz_data`, `9Mhz_data`, `10Mhz_data`, `11Mhz_data`, `12Mhz_data`, `13Mhz_data`, `14Mhz_data`, `15Mhz_data`, `16Mhz_data`, `17Mhz_data`, `18Mhz_data`, `19Mhz_data`, `20Mhz_data`, `21Mhz_data`, `22Mhz_data`, `23Mhz_data`, `24Mhz_data`, `25Mhz_data`, `26Mhz_data`, `27Mhz_data`, `28Mhz_data`, `29Mhz_data`, `30Mhz_data`, `station_coordinates_lat`,`station_coordinates_long`, `Remote_Station_ID`) VALUES ('".$item['D']."','".$item['T']."','".$item['S']."'.'".$item['P_1000000']."','".$item['P_2000000']."','".$item['P_3000000']."','".$item['P_4000000']."','".$item['P_5000000']."','".$item['P_6000000']."','".$item['P_7000000']."','".$item['P_8000000']."','".$item['P_9000000']."','".$item['P_10000000']."','".$item['P_11000000']."','".$item['P_12000000']."','".$item['P_13000000']."','".$item['P_14000000']."','".$item['P_15000000']."','".$item['P_16000000']."','".$item['P_17000000']."','".$item['P_18000000']."','".$item['P_19000000']."','".$item['P_20000000']."','".$item['P_21000000']."','".$item['P_22000000']."','".$item['P_23000000']."','".$item['P_24000000']."','".$item['P_25000000']."','".$item['P_26000000']."','".$item['P_27000000']."','".$item['P_28000000']."','".$item['P_29000000']."','".$item['username']."')";
+//       VALUES ('".$item['name']."', '".$item['phone']."', '".$item['city']."', '".$item['email']."')");
+
+//if(mysqli_query($link, $sql)){
+  //  echo "Records inserted successfully.";
+//} else{
+//    echo "ERROR: Could not able to execute $sql. " . mysqli_error($link);
+//}
+// Close connection
+mysqli_close($link);
+function parse_csv($file, $options = null) {
+	$link = mysqli_connect("localhost", "root", "mysql123", "hf_noise");
+// Check connection
+if($link === false){
+
+    die("ERROR: Could not connect. " . mysqli_connect_error());
+}
+
+    $delimiter = empty($options['delimiter']) ? "," : $options['delimiter'];
+    $to_object = empty($options['to_object']) ? false : true;
+    $str = file_get_contents($file);
+    $lines = explode("\n", $str);
+	echo "#############################################################";
+	echo "line" . var_dump($lines). "<br>";
+    $field_names = explode($delimiter, array_shift($lines));
+        echo "***********************************************************";
+    foreach ($lines as $line) {
+        // Skip the empty line
+        if (empty($line)) continue;
+        $item = explode($delimiter, $line);
+	echo "field count " .count($item);
+//echo "field " . $fields[0] . " " .$fields[1] ." ".$fields[3] ." " .$fields[3] ." " . "<br>";
+$sql = "INSERT INTO `hf_noise_data` (`Date`, `Time`, `samples`,`1Mhz_data`, `2Mhz_data`, `3Mhz_data`, `4Mhz_data`, `5Mhz_data`, `6Mhz_data`, `7Mhz_data`, `8Mhz_data`, `9Mhz_data`, `10Mhz_data`, `11Mhz_data`, `12Mhz_data`, `13Mhz_data`, `14Mhz_data`, `15Mhz_data`, `16Mhz_data`, `17Mhz_data`, `18Mhz_data`, `19Mhz_data`, `20Mhz_data`, `21Mhz_data`, `22Mhz_data`, `23Mhz_data`, `24Mhz_data`, `25Mhz_data`, `26Mhz_data`, `27Mhz_data`, `28Mhz_data`,`29Mhz_data`, `station_coordinates_lat`,`station_coordinates_long`, `Remote_Station_ID`) VALUES ('".$item[0]."','".$item[1]."','".$item[2]."','".$item[3]."','".$item[4]."','".$item[5]."','".$item[6]."','".$item[7]."','".$item[8]."','".$item[9]."','".$item[10]."','".$item[11]."','".$item[12]."','".$item[13]."','".$item[14]."','".$item[15]."','".$item[16]."','".$item[17]."','".$item[18]."','".$item[19]."','".$item[20]."','".$item[21]."','".$item[22]."','".$item[23]."','".$item[24]."','".$item[25]."','".$item[26]."','".$item[27]."','".$item[28]."','".$item[29]."','".$item[30]."','".$item[31]."','".$item[32]."','".$item[33]."','".$item[34]."')";
+if(mysqli_query($link, $sql)){
+    echo "Records inserted successfully.";
+} else{
+    echo "ERROR: Could not able to execute $sql. " . mysqli_error($link);
+}
+
+//INSERT INTO `hf_noise_data` (`Date`, `Time`, `samples`,`1Mhz_data`, `2Mhz_data`, `3Mhz_data`, `4Mhz_data`, `5Mhz_data`, `6Mhz_data`, `7Mhz_data`, `8Mhz_data`, `9Mhz_data`, `10Mhz_data`, `11Mhz_data`, `12Mhz_data`, `13Mhz_data`, `14Mhz_data`, `15Mhz_data`, `16Mhz_data`, `17Mhz_data`, `18Mhz_data`, `19Mhz_data`, `20Mhz_data`, `21Mhz_data`, `22Mhz_data`, `23Mhz_data`, `24Mhz_data`, `25Mhz_data`, `26Mhz_data`, `27Mhz_data`, `28Mhz_data`, `29Mhz_data`, `30Mhz_data`, `station_coordinates_lat`,`station_coordinates_long`, `Remote_Station_ID`) VALUES (' 2018-01-21',' 00:02:37',' -7.48',' -22.14',' -0.20',' -20.27',' -22.74',' -20.86',' -21.39',' -22.42',' -21.38',' -22.48',' -23.07',' -23.83',' -24.56',' -26.18',' -24.27',' -23.70',' -23.17',' -22.31',' -21.13',' -22.50',' -20.95',' -20.10',' -23.56',' -18.91',' 0.58',' -21.57',' -3.15',' -2.03',' 0.43','0.99','0.88','-26.4','-27.6','zr6aic')
+if(mysqli_query($link, $sql)){
+    echo "Records inserted successfully.";
+} else{
+    echo "ERROR: Could not able to execute $sql. " . mysqli_error($link);
+}
+
+	for ($x = 0; $x <= count($fields) ; $x++) {
+    	echo "Field " . $fields[$x]. " ";
+	} 
+echo "<br>";
+        }
+       // $res[] = $_res;
+	
+    }
+   // return $res;
+      return $fields;
+//}
+?>
+

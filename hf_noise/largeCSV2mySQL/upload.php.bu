@@ -1,0 +1,18 @@
+<?php
+$target_dir = "uploads/";
+$target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
+$fileType = pathinfo($target_file,PATHINFO_EXTENSION);
+echo " file name ".$target_file;
+echo " file path ". $fileType ;
+
+// Allow certain file formats
+if($fileType != "cvs" ) {
+    echo "Sorry, only CVS files are allowed. ";
+}
+else {
+    if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
+        echo "The file ". basename( $_FILES["fileToUpload"]["name"]). " has been uploaded.";
+    } else {
+        echo "Sorry, there was an error uploading your file.";
+    }
+?>

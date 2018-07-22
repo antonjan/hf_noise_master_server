@@ -1,0 +1,4 @@
+AuthType Basic
+AuthName "Restricted Content"
+AuthUserFile /etc/apacahe2/.htpasswd
+Required valid-user

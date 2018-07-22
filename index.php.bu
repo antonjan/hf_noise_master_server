@@ -1,0 +1,4 @@
+<?php
+printf("<h1>This will be the new home of the Master Noise Monitoring system</h1>");
+?>
+
