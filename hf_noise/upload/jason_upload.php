@@ -48,7 +48,7 @@ foreach ($lines as $line) {
 	//echo "field " . $fields[0] . " " .$fields[1] ." ".$fields[3] ." " .$fields[3] ." " . "<br>";
 	$sql = "INSERT INTO `hf_noise_data` (`Date`, `Time`, `samples`,`1Mhz_data`, `2Mhz_data`, `3Mhz_data`, `4Mhz_data`, `5Mhz_data`, `6Mhz_data`, `7Mhz_data`, `8Mhz_data`, `9Mhz_data`, `10Mhz_data`, `11Mhz_data`, `12Mhz_data`, `13Mhz_data`, `14Mhz_data`, `15Mhz_data`, `16Mhz_data`, `17Mhz_data`, `18Mhz_data`, `19Mhz_data`, `20Mhz_data`, `21Mhz_data`, `22Mhz_data`, `23Mhz_data`, `24Mhz_data`, `25Mhz_data`, `26Mhz_data`, `27Mhz_data`, `28Mhz_data`,`29Mhz_data`, `station_coordinates_lat`,`station_coordinates_long`, `Remote_Station_ID`) VALUES ('".$item[0]."','".$item[1]."','".$item[2]."','".$item[3]."','".$item[4]."','".$item[5]."','".$item[6]."','".$item[7]."','".$item[8]."','".$item[9]."','".$item[10]."','".$item[11]."','".$item[12]."','".$item[13]."','".$item[14]."','".$item[15]."','".$item[16]."','".$item[17]."','".$item[18]."','".$item[19]."','".$item[20]."','".$item[21]."','".$item[22]."','".$item[23]."','".$item[24]."','".$item[25]."','".$item[26]."','".$item[27]."','".$item[28]."','".$item[29]."','".$item[30]."','".$item[31]."','".$item[32]."','".$item[33]."','".$item[34]."')";
 $curr_timestamp = date('Y-m-d H:i:s')
-$sql2 = "Update `Remote_Station` SET `Last_Data_insert`= '".$curr_timestamp ."' WHERE `Station_Call_sign` ="."'".$item[34] ."'" ;
+$sql2 = "Update hfnoise.Remote_Station SET Last_Data_insert = '".$curr_timestamp ."' WHERE Station_Call_sign ="."'".$item[34] ."'" ;
 //UPDATE `hfnoise`.`Remote_Station` SET `Last_Data_insert`='2018-07-26 07:55:52' WHERE `Remote_Station_ID`='21'
 	if(mysqli_query($link, $sql)){
     		echo "Records inserted successfully.";
