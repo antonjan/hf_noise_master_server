@@ -94,12 +94,25 @@ echo "<table border = \"0\" style=\"width:100%\">";
 if ($result->num_rows > 0) {
     // output data of each row
 echo "<tr>\n";
-echo "<td>ID</td><td>Call sign</td><td>Enabled</td><td>Date enabled</td><td>Station Description</td>\n";
+echo "<td>ID</td><td>Call sign</td><td>Enabled</td><td>Date enabled</td><td>Last Update RED = Stale</td><td>Station Description</td>\n";
 echo "</tr>\n";
     while($row = $result->fetch_assoc()) {
+//####################### get Stale stations ###############################
+$stale = '';
+$dbdate = $row["Last_Data_insert"];
+if (strtotime($dbdate) < strtotime("-1 day")){
+	$stale = 1;
 echo "<tr>\n";
-echo "<td>" . $row["Remote_Station_ID"]. "</td><td><a href=\"". $row["Station_URL"]."\" target=\"_blank\">" . $row["Station_Call_sign"]. "</a></td><td>". $row["Remote_Station_Enabled"]. "</td><td>". $row["Remote_Station_date_enabled"]. "</td><td>". $row["Station_Description"]."</td>\n";
+echo "<td>" . $row["Remote_Station_ID"]. "</td><td><a href=\"". $row["Station_URL"]."\" target=\"_blank\">" . $row["Station_Call_sign"]. "</a></td><td>". $row["Remote_Station_Enabled"]. "</td><td>". $row["Remote_Station_date_enabled"]. "</td><td><font color=\"red\">". $row["Last_Data_insert"]. "</font></td><td>". $row["Station_Description"]."</td>\n";
 echo "</tr>\n";
+
+}else{
+	$stale = 0;
+echo "<tr>\n";
+echo "<td>" . $row["Remote_Station_ID"]. "</td><td><a href=\"". $row["Station_URL"]."\" target=\"_blank\">" . $row["Station_Call_sign"]. "</a></td><td>". $row["Remote_Station_Enabled"]. "</td><td>". $row["Remote_Station_date_enabled"]. "</td><td>". $row["Last_Data_insert"]. "</td><td>". $row["Station_Description"]."</td>\n";
+echo "</tr>\n";
+
+}
     }
 } else {
     echo "0 results";

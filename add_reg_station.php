@@ -58,8 +58,9 @@ mail($Remote_Station_SMS_Number."@winsms.net","-------",$msg);
 //echo "Sms email adress ".$Remote_Station_SMS_Number."@winsms.net";
 //echo "Sending Password with SMS";
 // Sens Description
-$msg = "Please follow the following instructions to enable your Remote station by using your Username and Password send by SMS.\n Goto to your /home/hfnoise directory in your raspberry Pi or Linux hf_noise system.\n Boot";
+$msg = "Please follow the following instructions to enable your Remote station by using your Username and Password send by SMS.\n Goto to your /home/hfnoise directory in your raspberry Pi or Linux hf_noise system.\n Follow the instructions on the following link https://github.com/antonjan/hf_noise/tree/master/uploads";
 mail($Remote_station_Email_Address,"Remote station Confugeration Instructions",$msg);
+mail("anton.janovsky@gmail.com","New remote station was registerd","New Callsign ".$Station_Call_sign);
 //echo "Sending e-mail with instructions";
 
 $conn->close();

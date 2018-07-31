@@ -25,14 +25,19 @@
 
 <html>
 	<head>
+
     <title>HF Noise</title>		
 	<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
 	<link rel="stylesheet" href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
 
 	<style>
 	.table-content{border-top:#CCCCCC 4px solid; width:50%;}
-	.table-content th {padding:5px 20px; background: #F0F0F0;vertical-align:top;} 
-	.table-content td {padding:5px 20px; border-bottom: #F0F0F0 1px solid;vertical-align:top;} 
+	.table-content th {padding:3px 5px; background: #F0F0F0;vertical-align:top;} 
+
+	.table-content td {padding:3px 5px; border-bottom: #F0F0F0 1px solid;vertical-align:top;} 
+ 	.table-content tr:nth-child(even) {background: #CCC}
+	.table-content tr:nth-child(odd) {background: #F0F0F0}
+
 	</style>
 	</head>
 	
@@ -42,8 +47,8 @@ include '../../menu.php';
 ?>
     	<div class="demo-content">
 	<h2 class="title_with_link">HF Noise Monitoring Graph selection system.</h2>
-        <form name="frmSearch" method="post" action="index.php">
-	Displaying only the last 150 rows in the system. Use the date and Remote station ID selection below to Export your data in CSV file.<br>
+        <form name="frmSearch" method="post" action="">
+	Displaying only the last a maximum of 150 rows in the system. Select the date range and Remote station ID to Export or disply.<br>
 	<input type="text" placeholder="From Date" id="post_at" name="search[post_at]"  value="<?php echo $post_at; ?>" class="input-control" />
 	<input type="text" placeholder="To Date" id="post_at_to_date" name="search[post_at_to_date]" style="margin-left:10px"  value="<?php echo $post_at_to_date; ?>" class="input-control"  />
 Select Remote Station CallSign: <select name="callsign">
@@ -56,7 +61,9 @@ echo	"<option value=".$row2["Station_Call_sign"].">".$row2["Station_Call_sign"].
 
 }
 ?> 
-        <input type="submit" name="go" value="Export CSV" >
+        
+        <input type="button" value="Display 150 here" onClick="this.form.action='index.php'; this.form.submit()">
+        <input type="button" value="Export Everything" onClick="this.form.action='export.php';this.form.submit()">
 	</p>
 <?php if(!empty($result))	 { ?>
 <table class="table-content">
@@ -163,4 +170,9 @@ $("#post_at").datepicker();
 $("#post_at_to_date").datepicker();
 });
 </script>
+<?php
+
+include("counter.php");
+
+?>
 </body></html>

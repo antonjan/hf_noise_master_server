@@ -33,7 +33,11 @@
 	<style>
 	.table-content{border-top:#CCCCCC 4px solid; width:50%;}
 	.table-content th {padding:3px 5px; background: #F0F0F0;vertical-align:top;} 
+
 	.table-content td {padding:3px 5px; border-bottom: #F0F0F0 1px solid;vertical-align:top;} 
+ 	.table-content tr:nth-child(even) {background: #CCC}
+	.table-content tr:nth-child(odd) {background: #F0F0F0}
+
 	</style>
 	</head>
 	
