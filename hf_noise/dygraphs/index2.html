@@ -1,0 +1,25 @@
+<html>
+<head>
+<script type="text/javascript"
+  src="dygraph.js"></script>
+<link rel="stylesheet" src="dygraph.css" />
+</head>
+<body>
+<h1>Graph</h1>
+Selec section to zoom. move mouse over graph to get value<br>
+<br>
+<div id="graphdiv4"
+  style="width:480px; height:320px;"></div>
+<script type="text/javascript">
+  g4 = new Dygraph(
+    document.getElementById("graphdiv4"), "twonormals.csv", {
+      rollPeriod: 7,
+//	fractions: true,
+      showRoller: true,
+      errorBars: true,
+      valueRange: [50,125]
+    }
+  );
+</script>
+</body>
+</html>
