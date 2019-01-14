@@ -69,7 +69,7 @@
 					
 					<div class="form-input-container" style="margin-top: 30px;margin-bottom: 30px; text-align: center;">
 
-						<label for="callsign"><h5 class="align-center">Select Remote Station CallSign:</h5></label>					
+						<label for="callsign">Select Remote Station CallSign:</label>					
 						<select id="callsign" name="callsign">
 							<?php
 

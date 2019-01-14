@@ -28,8 +28,27 @@ var graph_Data="<php echo $date_Range;?>";
 <?php
 include "../../menu.php";
 ?>
-<h1>Test Graph</h1>
-Select a section to zoom. Move your mouse over graph to get value.<br>
+<div class="main-container full-width">
+  <div class="site-width">
+
+    <div class="content-container">
+      <h3 class="align-center">Graph Beta Test</h3>
+      <h5 class="align-center">Custom graph with value hover, zoom and range selector.</h5>
+
+      <div class="seperator"></div>
+
+    </div> <!-- content-container -->
+
+    <div class="content-container">
+        <p class="align-center">Select a section to zoom. Move your mouse over graph to get value.</p>
+        <p class="align-center">Roll period of 14 timesteps, custom range selector height and plot color.</p>
+
+        <div id="roll14" class="dygraph-container" style="width:1200px; height:550px;">
+	</div>
+      </div> <!-- content-container -->
+
+      </div> <!-- site-width -->
+</div> <!-- main-container -->
 <br>
 
 <style>
@@ -38,8 +57,6 @@ Select a section to zoom. Move your mouse over graph to get value.<br>
   #darkbg .dygraph-legend { background-color: #101015; }
 </style>
 
-<p>Roll period of 14 timesteps, custom range selector height and plot color.</p>
-<div id="roll14" style="width:600px; height:300px;"></div>
 
 </body>
 </html>
