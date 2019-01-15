@@ -1,7 +1,7 @@
 <html>
 <head>
 <link href="/style.css" media="screen" rel="stylesheet" type="text/css" />
-    <title>HF Noise</title>             
+    <title>HF Noise</title>
         <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
         <link rel="stylesheet" href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
 
@@ -66,7 +66,7 @@ include "../../menu.php";
 //SELECT Remote_Station_ID FROM hfnoise.hf_noise_data where Remote_Station_ID = 'ZR6AIC';
 $success = null;
 $conn = mysqli_connect("localhost", "root", "root.amsat", "hfnoise") or die("db connection error");
-//$con = mysqli_connect("HostName","UserName","password","DBName") or die("Some error occurred during connection " . mysqli_error($con)); 
+//$con = mysqli_connect("HostName","UserName","password","DBName") or die("Some error occurred during connection " . mysqli_error($con));
 $result2 = mysqli_query($conn,"SELECT DISTINCT Remote_Station_ID FROM hfnoise.hf_noise_data;");
 //$result2 = mysqli_query($conn,$sql2);
 $data_set = "Date";
@@ -85,6 +85,7 @@ echo " station id array ".print_r($station_ID)."######<br>";
 //}
 //$sql = "SELECT * from hf_noise_data " . $queryCondition . " ORDER BY id_hf_noise_data desc LIMIT 150";
 //        $result = mysqli_query($conn,$sql);
+$temp_Data_Araay = array();
 
 #$sql = mysql_query("SELECT * from hf_noise_data " . $queryCondition . " ORDER BY id_hf_noise_data desc LIMIT 150";");
 $result = mysqli_query($conn,"SELECT * from hf_noise_data ORDER BY Date desc ,Time  desc LIMIT 350;");
@@ -94,34 +95,42 @@ $result = mysqli_query($conn,"SELECT * from hf_noise_data ORDER BY Date desc ,Ti
         $remote_ID = $row["Remote_Station_ID"];
         $Date = $row["Date"]; //Date format new Date(Date.UTC(y, m, d, hh + n, 0, 0 EG 2009/07/25 08:00
         $Time = $row["Time"];
-        $D1Mhz = $row["1Mhz_data"]; 
+        $D1Mhz = $row["1Mhz_data"];
 	//$int1 = floatval($D1Mhz);
-	$min = $D1Mhz - 10; 
+	$min = $D1Mhz - 10;
         $max = $D1Mhz + 10;
 echo "ididid".$remote_ID ;
 //if remote station id ,Date and Time is the same
+$temp_Data_Araay = array(",", ",", ",",",");
 if ($remote_ID = $station_ID[0]) {
-   	echo " array wwww " .$station_ID[0]. " ".$Date ." ". $Time.",".$min.";".$D1Mhz.";".$max ."<br>";
-	$data_set .= $Date ." ". $Time.",".$min.";".$D1Mhz.";".$max ."\n"; 
+   	echo " array wwww " .$station_ID[0]. ",";".$D1Mhz.";".$max ."\n";
+    //$data_set .= $Date ." ". $Time.",".$min.";".$D1Mhz.";".$max."\n";
+  $temp_Data_Araay[0] = $Date ." ". $Time.",".$min.";".$D1Mhz.";".$max ."\n";
 } elseif ($remote_ID = $station_ID[1]) {
    	echo " array oooo" .$station_ID[1]. " ".$Date ." ". $Time.",".$min.";".$D1Mhz.";".$max ."<br>";
-	$data_set .= $Date ." ". $Time.",".$min.";".$D1Mhz.";".$max."\n"; 
+	//$data_set .= $Date ." ". $Time.",".$min.";".$D1Mhz.";".$max."\n";
+  $temp_Data_Araay[1] = $Date ." ". $Time.",".$min.";".$D1Mhz.";".$max ."\n";
 } elseif ($remote_ID = $station_ID[2]) {
-	echo "array 33333" .$station_ID[2]. " ".$Date ." ". $Time.",".$min.";".$D1Mhz.";".$max ."<br>";	
-	$data_set .= $Date ." ". $Time.",".$min.",".$D1Mhz.",".$max;
+	echo "array 33333" .$station_ID[2]. " ".$Date ." ". $Time.",".$min.";".$D1Mhz.";".$max ."<br>";
+	//$data_set .= $Date ." ". $Time.",".$min.",".$D1Mhz.",".$max;
+  $temp_Data_Araay[2] = $Date ." ". $Time.",".$min.";".$D1Mhz.";".$max ."\n";
 } elseif ($remote_ID = $station_ID[3]){
 	echo "array 44444" .$station_ID[3]. " ".$Date ." ". $Time.",".$min.";".$D1Mhz.";".$max ."<br>";
-        $data_set .= $Date ." ". $Time.",".$min.",".$D1Mhz.",".$max;
+        //$data_set .= $Date ." ". $Time.",".$min.",".$D1Mhz.",".$max;
+        $temp_Data_Araay[3] = $Date ." ". $Time.",".$min.";".$D1Mhz.";".$max ."\n";
 } else {
 
 echo "done";
 }
-$data_set .= $Date ." ". $Time.",".$min.",".$D1Mhz.",".$max;
+if ($Date == $Date_Previose and $Time == $time_Previose){
+//$data_set .= $Date ." ". $Time.",".$min.",".$D1Mhz.",".$max;
+$data_set .= $temp_Data_Araay[0].$temp_Data_Araay[1],$temp_Data_Araay[2],$temp_Data_Araay[3];
+$Date_Previose = $Date;
 }
 //while($row = mysql_fetch_array($sql)){
 //Date,zr6aic,zs6yz
-//20070101,46;51;56,43;45;48 
-//20070102,43;48;52,48;56;63 
+//20070101,46;51;56,43;45;48
+//20070102,43;48;52,48;56;63
 echo "writing file";
 echo "<br>".$data_set;
 $file = "evnormal2.php";
