@@ -7,7 +7,7 @@ $(document).ready(function() {
         rollPeriod: 14,
         showRoller: true,
         customBars: true,
-        title: 'Daily RF Noise recordings',
+        title: 'RF Noise recordings',
 	titleHeight: 32,
         ylabel: 'Signal Level (dbm)',
 	xlabel: 'Date series',
