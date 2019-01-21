@@ -6,6 +6,8 @@ $(document).ready(function() {
       {
         rollPeriod: 14,
         showRoller: true,
+//	errorBars: true,
+//	valueRange:[-50,10],
         customBars: true,
         title: 'RF Noise recordings',
 	titleHeight: 32,
