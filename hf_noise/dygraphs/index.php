@@ -63,6 +63,7 @@ include "../../menu.php";
 //20070102,43;48;52,48;56;63
 //echo "<br>".$data_set;
 $file = "data_1mhz.php";
+echo "writing file";
 file_put_contents($file, $data_set);
 
 echo "<a href=\"".$file."\">Graph_data!</a>";
