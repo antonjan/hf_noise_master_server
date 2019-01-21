@@ -2,7 +2,7 @@ $(document).ready(function() {
 
   new Dygraph(
       document.getElementById("roll14"),
-      "data_1mhz.php",
+      "data_26mhz.php",
       {
         rollPeriod: 14,
         showRoller: true,
