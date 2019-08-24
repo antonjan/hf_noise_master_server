@@ -93,7 +93,7 @@ $conn->close();
 //echo "  });";
 echo "       }\n";
 echo "    </script>\n";
-echo "    <script async defer src=\"https://maps.googleapis.com/maps/api/js?key=AIzaSyCCkNzmh6piXUeCaTJ5vJsnC_WuakyRkrg&callback=initMap\">\n";
+echo "    <script async defer src=\"https://maps.googleapis.com/maps/api/js?key=Replace_with_key&callback=initMap\">\n";
 echo "    </script>\n";
 $servername = "localhost";
 $username = "root";
