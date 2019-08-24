@@ -42,10 +42,10 @@
 
 echo "    <script>\n";
 echo "      function initMap() {\n";
-echo "        var myLatLng = {lat: -26.463, lng: 28.044};\n";
+echo "        var myLatLng = {lat: 3.463, lng: 28.044};\n";
 //echo "        var station1 = {lat: -27.463, lng: 28.044};\n";
 echo "        var map = new google.maps.Map(document.getElementById('map'), {\n";
-echo "          zoom: 6,\n";
+echo "          zoom: 3,\n";
 echo "          center: myLatLng\n";
 echo "        });\n";
 //echo "        var marker = new google.maps.Marker({";
