@@ -1,30 +1,45 @@
 <?php
+?>
+<!DOCTYPE html>
+<html>
+<head>
+<link href="/style.css" media="screen" rel="stylesheet" type="text/css" />
+</head>
+<body>
 
-echo "<!DOCTYPE html>";
-echo "<html>\n";
-echo "<style>\n";
-echo "      /* Always set the map height explicitly to define the size of the div\n";
-echo "       * element that contains the map. */\n";
-echo "      #map {";
-echo "        height: 80%;\n";
-echo "      }";
-echo "      /* Optional: Makes the sample page fill the window. */\n";
-echo "      html, body {\n";
-echo "        height: 100%;\n";
-echo "        margin: 0;\n";
-echo "        padding: 0;\n";
-echo "      }\n";
-//echo "    </style>\n";
-echo "		tr:nth-of-type(odd) {\n";
-echo "      background-color:#ccc;\n";
-echo "    }\n";
-echo "</style>\n";
-echo "  </head>\n";
-echo "  <body>\n";
-include "menu.php";
-echo "  <h3>This is a radio noise interference monitoring system.</h3>\n";
-echo "  <p>The purpose of this system is to record radio interference signals on the 1-30Mhz HF band.<br>More information is available in the <a href='http://rfnoise.amsatsa.org.za/about_us.html'>ABOUT US</a> section.</p>\n";
-echo "    <div style='height:600px;' id=\"map\"></div>\n";
+<!-- Navigation -->
+<?php include "menu.php"; ?>
+
+<div class="main-container full-width">
+	<div class="site-width">
+
+		<div class="content-container top-box">
+            
+            <h3 class="align-center" style="margin-bottom: 5px; font-size: 18px;">SOUTHERN AFRICAN AMATEUR RADIO SATELLITE ASSOCIATION</h3>
+            <h2 class="align-center" style="margin-top: 10px;">RF Noise Monitoring System</h2>   
+            <div class="seperator"></div>         
+            <!-- <h2 class="align-center">AMSATSA RF Noise Monitoring System</h2> -->
+            
+            <div class="intro-box">
+                <p class="align-center intro-p">The purpose of this system is to record radio noise interference signals on the 1-30Mhz HF band.<br>
+                This system consists of several remote stations, running a Linux operating system either on a Raspberry Pi or on a laptop with an RTL dongle, recording HF noise at the moment.</p>
+                
+                <div class="btn-box">
+                    <a class="btn" href='http://rfnoise.amsatsa.org.za/about_us.php'>READ MORE</a>
+                    <a class="btn btn-trans" href='#map'>VIEW STATIONS</a>
+                </div>
+               
+            </div>
+        </div><!-- content-container -->
+
+    </div> <!-- site-width -->
+</div> <!-- main-container --> 
+
+
+<div id="map"></div><!-- Map -->
+
+<?php
+
 echo "    <script>\n";
 echo "      function initMap() {\n";
 echo "        var myLatLng = {lat: -26.463, lng: 28.044};\n";
@@ -93,11 +108,11 @@ if ($conn->connect_error) {
 }
 $sql = "SELECT * FROM `Remote_Station`";
 $result = $conn->query($sql);
-echo "<table border = \"0\" style=\"width:100%\">";
+echo "<table class='properties-table' border = \"0\" style=\"width:100%\">";
 if ($result->num_rows > 0) {
     // output data of each row
 echo "<tr>\n";
-echo "<td>ID</td><td>Call sign</td><td>Enabled</td><td>Date enabled</td><td>Last Update RED = Stale</td><td>Station Description</td>\n";
+echo "<th>ID</th><th>Call sign</th><th>Enabled</th><th>Date enabled</th><th>Last Update RED = Stale</th><th>Station Description</th>\n";
 echo "</tr>\n";
     while($row = $result->fetch_assoc()) {
 //####################### get Stale stations ###############################
@@ -124,7 +139,27 @@ echo "</table>\n";
 $conn->close();
 include("counter.php");
 
+
+// echo "<img src='http://rfnoise.amsatsa.org.za/noise-bg.jpg'>\n";
+
+
 echo "</body>\n";
 echo "</html>\n";
 ?>
 
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+
+<script>
+    $('a[href*="#"]:not([href="#"]):not([href="#show"]):not([href="#hide"])').click(function() {
+		if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') && location.hostname == this.hostname) {
+			var target = $(this.hash);
+			target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
+			if (target.length) {
+				$('html,body').animate({
+					scrollTop: target.offset().top
+				}, 500);
+				return false;
+			}
+		}
+	});
+</script>

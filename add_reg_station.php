@@ -17,7 +17,8 @@ $Station_Call_sign   = $conn->real_escape_string($_POST['Station_Call_sign']);
 $Remote_station_coordinates_lat    = $conn->real_escape_string($_POST['Remote_station_coordinates_lat']);
 $Remote_station_coordinates_long   = $conn->real_escape_string($_POST['Remote_station_coordinates_long']);
 $Station_URL = $conn->real_escape_string($_POST['Station_URL']);
-$Remote_station_login_Key = randomPassword(25,1, "lower_case,upper_case,numbers,special_symbols"); //$conn->real_escape_string($_POST['Remote_station_login_Key']);
+$Remote_station_login_Key_array = randomPassword(25,1, "lower_case,upper_case,numbers,special_symbols"); //$conn->real_escape_string($_POST['Remote_station_login_Key']);
+$Remote_station_login_Key = $Remote_station_login_Key_array[0];
 $Remote_station_Email_Address = $conn->real_escape_string($_POST['Remote_station_Email_Address']);
 $Remote_Station_SMS_Number = $conn->real_escape_string($_POST['Remote_Station_SMS_Number']);
 $Remote_Station_Address_1 = $conn->real_escape_string($_POST['Remote_Station_Address_1']);
@@ -58,7 +59,7 @@ mail($Remote_Station_SMS_Number."@winsms.net","-------",$msg);
 //echo "Sms email adress ".$Remote_Station_SMS_Number."@winsms.net";
 //echo "Sending Password with SMS";
 // Sens Description
-$msg = "Please follow the following instructions to enable your Remote station by using your Username and Password send by SMS.\n Goto to your /home/hfnoise directory in your raspberry Pi or Linux hf_noise system.\n Follow the instructions on the following link https://github.com/antonjan/hf_noise/tree/master/uploads";
+$msg = "Please follow the following instructions to enable your Remote station by using your Username and Password send by SMS.\n Goto to your http://localhost/hf_noise/admin directory in your raspberry Pi or Linux hf_noise system.\n Username for Raspberry Pi hfnoise and password is zr6aic\n If you get stuck you can contacti us here http://rfnoise.amsatsa.org.za/contact_us.php";
 mail($Remote_station_Email_Address,"Remote station Confugeration Instructions",$msg);
 mail("anton.janovsky@gmail.com","New remote station was registerd","New Callsign ".$Station_Call_sign);
 //echo "Sending e-mail with instructions";
