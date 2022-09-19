@@ -1,8 +1,8 @@
 <?php
 $host      = "localhost";
-$user      = "root";
-$pass      = "root.amsat";
-$db_name   = "hfnoise";
+$user      = "rfnoise";
+$pass      = "djd89%jk0G4#";
+$db_name   = "rfnoise";
 $exp_table = "hf_noise_data"; // Table to export
 $mysqli = new mysqli($host, $user, $pass, $db_name);
 $mysqli->set_charset("utf8");

@@ -65,7 +65,7 @@ include "../../menu.php";
 //SELECT DISTINCT Remote_Station_ID FROM hfnoise.hf_noise_data;
 //SELECT Remote_Station_ID FROM hfnoise.hf_noise_data where Remote_Station_ID = 'ZR6AIC';
 $success = null;
-$conn = mysqli_connect("localhost", "root", "root.amsat", "hfnoise") or die("db connection error");
+$conn = mysqli_connect("localhost", "rfnoise", "djd89%jk0G4#", "rfnoise") or die("db connection error");
 //$con = mysqli_connect("HostName","UserName","password","DBName") or die("Some error occurred during connection " . mysqli_error($con));
 $result2 = mysqli_query($conn,"SELECT DISTINCT Remote_Station_ID FROM hfnoise.hf_noise_data;");
 //$result2 = mysqli_query($conn,$sql2);

@@ -1,5 +1,5 @@
 <?php
-	$conn = mysqli_connect("localhost", "root", "root.amsat", "hfnoise");
+	$conn = mysqli_connect("localhost", "rfnoise", "djd89%jk0G4#", "rfnoise");
 	
 	$post_at = "";
 	$post_at_to_date = "";

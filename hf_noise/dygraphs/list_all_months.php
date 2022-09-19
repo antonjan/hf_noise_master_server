@@ -6,7 +6,7 @@ echo "<link href=\"/style.css\" media=\"screen\" rel=\"stylesheet\" type=\"text/
 echo "</head>";
 #SELECT * FROM hfnoise.hf_noise_data GROUP BY YEAR(Date), MONTH(Date)ORDER BY YEAR(Date) DESC, MONTH(Date) DESC
 $success = null;
-$conn = mysqli_connect("localhost", "root", "root.amsat", "hfnoise") or die("db connection error");
+$conn = mysqli_connect("localhost", "rfnoise", "djd89%jk0G4#", "rfnoise") or die("db connection error");
 $result2 = mysqli_query($conn,"SELECT DISTINCT Remote_Station_ID FROM hfnoise.hf_noise_data;");
 $data_set = "";
 $station_IDs= array();

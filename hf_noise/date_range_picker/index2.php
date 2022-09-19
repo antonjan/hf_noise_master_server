@@ -1,5 +1,5 @@
 <?php
-	$conn = mysqli_connect("localhost", "root", "root.amsat", "hfnoise");
+	$conn = mysqli_connect("localhost", "rfnoise", "djd89%jk0G4#", "rfnoise");
 	
 	$post_at = "";
 	$post_at_to_date = "";
@@ -28,9 +28,10 @@
 header('Content-Type: text/csv');
 header('Content-Disposition: attachment;filename=export.csv');
 $servername = "localhost";
-$username = "root";
-$password = "root.amsat";
-$dbname = "hfnoise";
+$username = "rfnoise";
+$password = "djd89%jk0G4#";
+$dbname = "rfnoise";
+
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
 // Check connection

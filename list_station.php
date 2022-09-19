@@ -6,9 +6,9 @@ echo "</head>";
 echo "<body>";
 echo "<h3>List of Stations</h3>";
 $servername = "localhost";
-$username = "root";
-$password = "mysql123";
-$dbname = "hf_noise";
+$username = "rfnoise";
+$password = "djd89%jk0G4#";
+$dbname = "rfnoise";
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);

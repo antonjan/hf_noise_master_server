@@ -2,12 +2,12 @@
 header('Content-Type: text/csv');
 header('Content-Disposition: attachment;filename=export.csv');
 $servername = "localhost";
-$username = "root";
-$password = "root.amsat";
-$dbname = "hfnoise";
+$username = "rfnoise";
+$password = "djd89%jk0G4#";
+$dbname = "rfnoise";
 $conn = new mysqli($servername, $username, $password, $dbname);
 
-//	$conn = mysqli_connect("localhost", "root", "root.amsat", "hfnoise");
+//	$conn = mysqli_connect("localhost", "rfnoise", "djd89%jk0G4#", "hrnoise");
 	
 	$post_at = "";
 	$post_at_to_date = "";

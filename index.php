@@ -55,9 +55,9 @@ echo "        });\n";
 //echo "        });";
 
 $servername = "localhost";
-$username = "root";
-$password = "root.amsat";
-$dbname = "hfnoise";
+$username = "rfnoise";
+$password = "djd89%jk0G4#";
+$dbname = "rfnoise";
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
@@ -93,12 +93,12 @@ $conn->close();
 //echo "  });";
 echo "       }\n";
 echo "    </script>\n";
-echo "    <script async defer src=\"https://maps.googleapis.com/maps/api/js?key=Replace_with_key&callback=initMap\">\n";
+echo "    <script async defer src=\"https://maps.googleapis.com/maps/api/js?key=AIzaSyCCkNzmh6piXUeCaTJ5vJsnC_WuakyRkrg&callback=initMap\">\n";
 echo "    </script>\n";
 $servername = "localhost";
-$username = "root";
-$password = "root.amsat";
-$dbname = "hfnoise";
+$username = "rfnoise";
+$password = "djd89%jk0G4#";
+$dbname = "rfnoise";
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
